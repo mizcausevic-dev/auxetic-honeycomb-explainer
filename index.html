@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Re-entrant honeycomb · auxetic mechanism</title>
+    <meta
+      name="description"
+      content="A 34-second interactive model of a re-entrant honeycomb. The architecture widens when it is stretched, an illustrative negative effective Poisson response."
+    />
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+  </head>
+  <body>
+    <div id="app">
+      <canvas id="view" aria-hidden="true"></canvas>
+      <canvas id="fallback" hidden aria-hidden="true"></canvas>
+      <div id="vignette" aria-hidden="true"></div>
+
+      <header class="top">
+        <p class="eyebrow">Auxetic mechanical metamaterial</p>
+        <h1>Re-entrant honeycomb</h1>
+        <p id="shot-kicker">Shot 1  Re-entrant coupon</p>
+      </header>
+
+      <section class="measures" aria-label="Gauge measurements">
+        <dl>
+          <div><dt>H0</dt><dd id="h0-readout">0.000</dd></div>
+          <div><dt>W0</dt><dd id="w0-readout">0.000</dd></div>
+          <div><dt>H(t)</dt><dd id="h-readout">0.000</dd></div>
+          <div><dt>W(t)</dt><dd id="w-readout">0.000</dd></div>
+          <div><dt>εy</dt><dd id="ey-readout">+0.0%</dd></div>
+          <div><dt>εx</dt><dd id="ex-readout">+0.0%</dd></div>
+          <div class="nu"><dt id="copy-secant">Illustrative effective secant ratio</dt><dd id="nu-readout">—</dd></div>
+        </dl>
+        <p class="fine" id="copy-amplified"></p>
+        <p class="fine" id="copy-ideal"></p>
+        <p class="fine" id="copy-polymer"></p>
+        <p class="fine" id="copy-fixture"></p>
+        <p class="fine" id="status-line">Model units. Strains use the central gauge.</p>
+      </section>
+
+      <div id="callouts" aria-hidden="true"></div>
+
+      <aside id="compare" hidden aria-label="Schematic comparison">
+        <p class="compare-kicker" id="copy-schematic">Schematic comparison</p>
+        <canvas id="compare-view" width="640" height="280"></canvas>
+        <div class="compare-cols">
+          <p id="copy-widens">Auxetic: widens</p>
+          <p id="copy-narrows">Conventional example: narrows</p>
+        </div>
+        <p class="compare-foot"><span id="copy-equal">Equal axial strain</span> <span id="compare-eps">εy +0.0%</span></p>
+        <p class="fine" id="copy-notevery"></p>
+      </aside>
+
+      <p id="caption" aria-live="polite">Re-entrant honeycomb. Central gauge region. Y: loading. X: transverse.</p>
+
+      <footer class="transport" aria-label="Playback">
+        <div class="transport-row">
+          <button id="play" type="button" aria-pressed="false">Play</button>
+          <button id="replay" type="button">Replay</button>
+          <div class="timeline-wrap">
+            <div class="ticks" aria-hidden="true"></div>
+            <input
+              id="timeline"
+              type="range"
+              min="0"
+              max="34"
+              step="0.001"
+              value="0"
+              aria-label="Animation timeline, 34 seconds"
+              aria-valuemin="0"
+              aria-valuemax="34"
+              aria-valuetext="0 seconds, shot 1, Re-entrant coupon"
+            />
+          </div>
+          <span id="time-readout" aria-hidden="true">0.00 / 34.00</span>
+        </div>
+        <div class="transport-row secondary">
+          <button id="mute" type="button" aria-pressed="false">Mute</button>
+          <label>Music <input id="music" type="range" min="0" max="1" step="0.01" value="0.75" aria-label="Music level" /></label>
+          <label>Effects <input id="sfx" type="range" min="0" max="1" step="0.01" value="0.7" aria-label="Effects level" /></label>
+          <button id="motion" type="button" aria-pressed="false">Reduce motion</button>
+          <button id="fullscreen" type="button">Full screen</button>
+        </div>
+        <p class="keys">Space plays or pauses. Left and right arrows seek. M mutes. F full screen. Home replays.</p>
+      </footer>
+
+      <div id="loader" role="status">Building the lattice</div>
+      <div id="error" role="alert" hidden></div>
+    </div>
+    <noscript>
+      <p>This explainer needs JavaScript to run the kinematic model and the 34-second timeline.</p>
+    </noscript>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
