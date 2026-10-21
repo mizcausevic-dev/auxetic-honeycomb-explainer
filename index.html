@@ -10,7 +10,69 @@
     />
     <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
   </head>
-  <body>
+  <body><section class="kg-foot" style="margin:18px;color:#93a3b5;font-family:ui-sans-serif,Segoe UI,sans-serif"><style>
+.send-row, .explain-row, .identity { display:flex; flex-wrap:wrap; align-items:center; gap:8px; margin-top:14px; }
+.share-label { font:600 11px ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing:.08em; text-transform:uppercase; color:#93a3b5; margin-right:4px; }
+.identity a, .send-btn { color:#e6edf5; text-decoration:none; }
+.identity a { border-bottom:1px solid #2c3c50; }
+.send-btn, .level-btn { display:inline-flex; align-items:center; gap:8px; border:1px solid #2c3c50; background:#141c27; color:#e6edf5; border-radius:10px; padding:8px 12px; font:inherit; cursor:pointer; }
+.level-btn { border-radius:999px; background:transparent; }
+.level-btn[aria-pressed="true"] { background:#14b8a6; color:#04221f; border-color:transparent; }
+.send-btn svg, .level-btn svg { display:block; }
+#explain-text { flex-basis:100%; margin:8px 0 0; line-height:1.45; color:#d5deea; }
+</style><div class="explain-row">
+<span class="share-label">Explain this page</span>
+<button class="level-btn" type="button" data-level="tech" aria-pressed="true">Tech</button>
+<button class="level-btn" type="button" data-level="nontech" aria-pressed="false">Non-Tech</button>
+<button class="level-btn" type="button" data-level="layman" aria-pressed="false">Layman</button>
+<p id="explain-text"></p>
+</div>
+<div class="send-row">
+<span class="share-label">Send to</span>
+<a class="send-btn" data-send="chatgpt" href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><circle cx="6" cy="8" r="3.2" fill="none" stroke="currentColor"/><circle cx="10" cy="8" r="3.2" fill="none" stroke="currentColor"/></svg>ChatGPT</a>
+<a class="send-btn" data-send="claude" href="https://claude.ai/new" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M8 1.5 9.2 6.2 14 8 9.2 9.8 8 14.5 6.8 9.8 2 8l4.8-1.8Z" fill="currentColor"/></svg>Claude</a>
+<a class="send-btn" data-send="perplexity" href="https://www.perplexity.ai/" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M8 1.2 9.4 6.6 14.8 8 9.4 9.4 8 14.8 6.6 9.4 1.2 8 6.6 6.6Z" fill="none" stroke="currentColor"/></svg>Perplexity</a>
+<a class="send-btn" data-send="gemini" href="https://gemini.google.com/app" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M8 1.2 9.1 6.9 14.8 8 9.1 9.1 8 14.8 6.9 9.1 1.2 8 6.9 6.9Z" fill="currentColor"/></svg>Gemini</a>
+<a class="send-btn" data-send="grok" href="https://grok.com/" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M3 13 13 3M6 3h7v7" fill="none" stroke="currentColor" stroke-width="1.4"/></svg>Grok</a>
+</div><script id="explain-data" type="application/json">{"tech": "Re-entrant honeycomb · auxetic mechanism. Read the labels and limits on this figure. This footer does not add specifications. The plate is explanatory, not a certified reference.", "nontech": "This page shows Re-entrant honeycomb · auxetic mechanism as a short diagram. The labels on the figure are the content. It is not a performance claim.", "layman": "This is a moving picture about Re-entrant honeycomb · auxetic mechanism. It is for learning. It is not a manual."}</script><script>
+(function () {
+  var canon = document.querySelector('link[rel="canonical"]');
+  var pageUrl = canon && canon.href ? canon.href : location.href.split("#")[0].split("?")[0];
+  var prompt = "Please explain and summarize the key takeaways of this page: " + pageUrl;
+  var q = encodeURIComponent(prompt);
+  var targets = {
+    chatgpt: "https://chatgpt.com/?q=" + q,
+    claude: "https://claude.ai/new?q=" + q,
+    perplexity: "https://www.perplexity.ai/search?q=" + q,
+    gemini: "https://gemini.google.com/app?q=" + q,
+    grok: "https://grok.com/?q=" + q
+  };
+  document.querySelectorAll("[data-send]").forEach(function (link) {
+    var key = link.getAttribute("data-send");
+    if (targets[key]) link.href = targets[key];
+  });
+  var node = document.getElementById("explain-data");
+  var out = document.getElementById("explain-text");
+  if (!node || !out) return;
+  var data = JSON.parse(node.textContent);
+  function show(level) {
+    out.textContent = data[level] || "";
+    document.querySelectorAll("[data-level]").forEach(function (btn) {
+      btn.setAttribute("aria-pressed", btn.getAttribute("data-level") === level ? "true" : "false");
+    });
+  }
+  document.querySelectorAll("[data-level]").forEach(function (btn) {
+    btn.addEventListener("click", function () { show(btn.getAttribute("data-level")); });
+  });
+  show("tech");
+})();
+</script><footer><p>Static plate. No account, no form, no analytics, and no third-party script on this page. Built as an illustrative cutaway from a working brief. <a href="https://github.com/mizcausevic-dev/auxetic-honeycomb-explainer">Repository</a>.</p>
+<nav class="identity" aria-label="Kinetic Gain and Mirza Causevic">
+<a href="https://www.linkedin.com/company/kinetic-gain/" target="_blank" rel="noopener noreferrer">Kinetic Gain</a>
+<a href="https://github.com/mizcausevic-dev" target="_blank" rel="noopener noreferrer">GitHub</a>
+<a href="https://cursor.com/@mirza" target="_blank" rel="noopener noreferrer">Cursor</a>
+<a href="https://www.linkedin.com/in/mirzacausevic/" target="_blank" rel="noopener noreferrer">Mirza Causevic</a>
+</nav></footer></section>
     <div id="app">
       <canvas id="view" aria-hidden="true"></canvas>
       <canvas id="fallback" hidden aria-hidden="true"></canvas>
@@ -93,68 +155,5 @@
     </noscript>
     <script type="module" src="/src/main.ts"></script>
   <a href="https://github.com/mizcausevic-dev/auxetic-honeycomb-explainer" style="position:fixed;right:12px;bottom:12px;z-index:9999;background:#0B1019;color:#00E5FF;font:600 12px ui-sans-serif,sans-serif;padding:6px 10px;border:1px solid #2c3c50;border-radius:999px;text-decoration:none">Repository</a>
-<section class="kg-foot" style="margin:18px;color:#93a3b5;font-family:ui-sans-serif,Segoe UI,sans-serif"><style>
-.send-row, .explain-row, .identity { display:flex; flex-wrap:wrap; align-items:center; gap:8px; margin-top:14px; }
-.share-label { font:600 11px ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing:.08em; text-transform:uppercase; color:#93a3b5; margin-right:4px; }
-.identity a, .send-btn { color:#e6edf5; text-decoration:none; }
-.identity a { border-bottom:1px solid #2c3c50; }
-.send-btn, .level-btn { display:inline-flex; align-items:center; gap:8px; border:1px solid #2c3c50; background:#141c27; color:#e6edf5; border-radius:10px; padding:8px 12px; font:inherit; cursor:pointer; }
-.level-btn { border-radius:999px; background:transparent; }
-.level-btn[aria-pressed="true"] { background:#14b8a6; color:#04221f; border-color:transparent; }
-.send-btn svg, .level-btn svg { display:block; }
-#explain-text { flex-basis:100%; margin:8px 0 0; line-height:1.45; color:#d5deea; }
-</style><footer><p>Static plate. No account, no form, no analytics, and no third-party script on this page. Built as an illustrative cutaway from a working brief. <a href="https://github.com/mizcausevic-dev/auxetic-honeycomb-explainer">Repository</a>.</p>
-<nav class="identity" aria-label="Kinetic Gain and Mirza Causevic">
-<a href="https://www.linkedin.com/company/kinetic-gain/" target="_blank" rel="noopener noreferrer">Kinetic Gain</a>
-<a href="https://github.com/mizcausevic-dev" target="_blank" rel="noopener noreferrer">GitHub</a>
-<a href="https://cursor.com/@mirza" target="_blank" rel="noopener noreferrer">Cursor</a>
-<a href="https://www.linkedin.com/in/mirzacausevic/" target="_blank" rel="noopener noreferrer">Mirza Causevic</a>
-</nav>
-<div class="send-row">
-<span class="share-label">Send to</span>
-<a class="send-btn" data-send="chatgpt" href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><circle cx="6" cy="8" r="3.2" fill="none" stroke="currentColor"/><circle cx="10" cy="8" r="3.2" fill="none" stroke="currentColor"/></svg>ChatGPT</a>
-<a class="send-btn" data-send="claude" href="https://claude.ai/new" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M8 1.5 9.2 6.2 14 8 9.2 9.8 8 14.5 6.8 9.8 2 8l4.8-1.8Z" fill="currentColor"/></svg>Claude</a>
-<a class="send-btn" data-send="perplexity" href="https://www.perplexity.ai/" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M8 1.2 9.4 6.6 14.8 8 9.4 9.4 8 14.8 6.6 9.4 1.2 8 6.6 6.6Z" fill="none" stroke="currentColor"/></svg>Perplexity</a>
-<a class="send-btn" data-send="gemini" href="https://gemini.google.com/app" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M8 1.2 9.1 6.9 14.8 8 9.1 9.1 8 14.8 6.9 9.1 1.2 8 6.9 6.9Z" fill="currentColor"/></svg>Gemini</a>
-<a class="send-btn" data-send="grok" href="https://grok.com/" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M3 13 13 3M6 3h7v7" fill="none" stroke="currentColor" stroke-width="1.4"/></svg>Grok</a>
-</div>
-<div class="explain-row">
-<span class="share-label">Explain this page</span>
-<button class="level-btn" type="button" data-level="tech" aria-pressed="true">Tech</button>
-<button class="level-btn" type="button" data-level="nontech" aria-pressed="false">Non-Tech</button>
-<button class="level-btn" type="button" data-level="layman" aria-pressed="false">Layman</button>
-<p id="explain-text"></p>
-</div></footer><script id="explain-data" type="application/json">{"tech": "Re-entrant honeycomb · auxetic mechanism. Read the labels and limits on this figure. This footer does not add specifications. The plate is explanatory, not a certified reference.", "nontech": "This page shows Re-entrant honeycomb · auxetic mechanism as a short diagram. The labels on the figure are the content. It is not a performance claim.", "layman": "This is a moving picture about Re-entrant honeycomb · auxetic mechanism. It is for learning. It is not a manual."}</script><script>
-(function () {
-  var canon = document.querySelector('link[rel="canonical"]');
-  var pageUrl = canon && canon.href ? canon.href : location.href.split("#")[0].split("?")[0];
-  var prompt = "Please explain and summarize the key takeaways of this page: " + pageUrl;
-  var q = encodeURIComponent(prompt);
-  var targets = {
-    chatgpt: "https://chatgpt.com/?q=" + q,
-    claude: "https://claude.ai/new?q=" + q,
-    perplexity: "https://www.perplexity.ai/search?q=" + q,
-    gemini: "https://gemini.google.com/app?q=" + q,
-    grok: "https://grok.com/?q=" + q
-  };
-  document.querySelectorAll("[data-send]").forEach(function (link) {
-    var key = link.getAttribute("data-send");
-    if (targets[key]) link.href = targets[key];
-  });
-  var node = document.getElementById("explain-data");
-  var out = document.getElementById("explain-text");
-  if (!node || !out) return;
-  var data = JSON.parse(node.textContent);
-  function show(level) {
-    out.textContent = data[level] || "";
-    document.querySelectorAll("[data-level]").forEach(function (btn) {
-      btn.setAttribute("aria-pressed", btn.getAttribute("data-level") === level ? "true" : "false");
-    });
-  }
-  document.querySelectorAll("[data-level]").forEach(function (btn) {
-    btn.addEventListener("click", function () { show(btn.getAttribute("data-level")); });
-  });
-  show("tech");
-})();
-</script></section></body>
+</body>
 </html>
